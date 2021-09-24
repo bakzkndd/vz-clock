@@ -1,0 +1,15 @@
+.powerclock {
+	text-align: center;
+	color: var(--text-muted);
+	font-weight: bold;
+	padding-bottom: .5rem;
+}
+
+.powerclock.sticky {
+	z-index: 1;
+	background-color: var(--background-tertiary);
+	position: sticky;
+	top: 0;
+	box-shadow: 0 -4px var(--background-tertiary);
+}
+
