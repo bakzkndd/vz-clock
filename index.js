@@ -1,37 +1,40 @@
-const { Plugin } = require('@vizality/entities');
-const { React, getModule } = require('@vizality/webpack');
-const { patch, unpatch } = require('@vizality/patcher');
-const { forceUpdateElement } = require('@vizality/util');
+const { Plugin } = require("@vizality/entities");
+const { React, getModule } = require("@vizality/webpack");
+const { patch, unpatch } = require("@vizality/patcher");
+const { forceUpdateElement } = require("@vizality/util");
 
-const Clock = require('./components/Clock');
-const Settings = require('./components/Settings');
-
+const Clock = require("./components/Clock");
+const Settings = require("./components/Settings");
 
 module.exports = class vzclock extends Plugin {
-  async start () {
-    this.injectStyles('./style.css');
+  async start() {
+    this.injectStyles("./style.css");
 
-    vizality.api.settings.registerSettings('vz-clock-settings', {
+    vizality.api.settings.registerSettings("vz-clock-settings", {
       category: this.entityID,
-      label: 'vz-clock',
-      render: Settings
+      label: "vz-clock",
+      render: Settings,
     });
 
-    const homeButton  = await getModule([ 'DefaultHomeButton' ]);
-    patch('vz-clock', homeButton, 'DefaultHomeButton', (_, res) => {
-      if (!Array.isArray(res)) res = [ res ];
-      res.unshift(React.createElement(Clock, {
-        className: 'vz-clock sticky',
-        getSetting: this.settings.get,
-        updateSetting: this.settings.update
-      }));
+    const homeButton = await getModule(["DefaultHomeButton"]);
+    patch("vz-clock", homeButton, "DefaultHomeButton", (_, res) => {
+      if (!Array.isArray(res)) res = [res];
+      res.unshift(
+        React.createElement(Clock, {
+          className: "vz-clock sticky",
+          getSetting: this.settings.get,
+          updateSetting: this.settings.update,
+        })
+      );
       return res;
     });
   }
 
-  stop () {
-    unpatch('vz-clock');
-    vizality.api.settings.unregisterSettings('vz-clock-settings');
-    forceUpdateElement(`.${(getModule([ 'homeIcon', 'downloadProgress' ], false)).tutorialContainer}`);
+  stop() {
+    unpatch("vz-clock");
+    vizality.api.settings.unregisterSettings("vz-clock-settings");
+    forceUpdateElement(
+      `.${getModule(["homeIcon", "downloadProgress"], false).tutorialContainer}`
+    );
   }
 };
