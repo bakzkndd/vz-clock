@@ -4,4 +4,4 @@
  Because who wouldn't forget the time? Just look at the top of your guild list! Look! It's a clock!
  
  # How To Install
- Vizality: Open a CMD/Powershell/Terminal/Gitbash window in the Plugin folder and use: `git clone https://github.com/bakzkndd/MemberCount/`
+ Vizality: Open a CMD/Powershell/Terminal/Gitbash window in the Plugin folder and use: `git clone https://github.com/bakzkndd/vz-clock/`
