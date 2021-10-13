@@ -1,17 +1,20 @@
 const { Plugin } = require("@vizality/entities");
 const { React, getModule } = require("@vizality/webpack");
 const { patch, unpatch } = require("@vizality/patcher");
-const { forceUpdateElement } = require("@vizality/util");
 
 const Clock = require("./components/Clock");
-const Settings = require("./components/Settings");
+
+const getDefaultMethodByKeyword = (mdl, keyword) => {
+	const defaultMethod = mdl.__vizalityOriginal_default ?? mdl.default;
+	return typeof defaultMethod === 'function' ? defaultMethod.toString().includes(keyword) : null;
+};
 
 module.exports = class vzclock extends Plugin {
   async start() {
     this.injectStyles("./style.css");
 
-    const homeButton = await getModule(m => m.default?.displayName?.includes("GuildList"));
-    patch("vz-clock", homeButton, "DefaultHomeButton", (_, res) => {
+    const homeButton = await getModule(m => getDefaultMethodByKeyword(m, 'showDMsOnly'));
+    patch("vz-clock", homeButton, "default", (_, res) => {
       console.log(res)
       if (!Array.isArray(res)) res = [res];
       res.unshift(
