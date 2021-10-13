@@ -10,7 +10,7 @@ module.exports = class vzclock extends Plugin {
   async start() {
     this.injectStyles("./style.css");
 
-    const homeButton = await getModulesByKeyword(["HomeIcon"])[0];
+    const homeButton = await getModulesByKeyword("HomeIcon")[0];
     patch("vz-clock", homeButton, "DefaultHomeButton", (_, res) => {
       if (!Array.isArray(res)) res = [res];
       res.unshift(
