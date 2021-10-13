@@ -1,5 +1,5 @@
 const { Plugin } = require("@vizality/entities");
-const { React, getModule } = require("@vizality/webpack");
+const { React, getModulesByKeyword } = require("@vizality/webpack");
 const { patch, unpatch } = require("@vizality/patcher");
 const { forceUpdateElement } = require("@vizality/util");
 
