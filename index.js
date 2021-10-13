@@ -10,12 +10,6 @@ module.exports = class vzclock extends Plugin {
   async start() {
     this.injectStyles("./style.css");
 
-    vizality.api.settings.registerSettings("vz-clock-settings", {
-      category: this.entityID,
-      label: "vz-clock",
-      render: Settings,
-    });
-
     const homeButton = await getModulesByKeyword(["HomeIcon"])[0];
     patch("vz-clock", homeButton, "DefaultHomeButton", (_, res) => {
       if (!Array.isArray(res)) res = [res];
