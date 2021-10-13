@@ -26,7 +26,6 @@ module.exports = class vzclock extends Plugin {
 
   stop() {
     unpatch("vz-clock");
-    vizality.api.settings.unregisterSettings("vz-clock-settings");
     forceUpdateElement(
       `.${getModulesByKeyword("homeIcon", false)[0].tutorialContainer}`
     );
