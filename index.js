@@ -27,8 +27,5 @@ module.exports = class vzclock extends Plugin {
 
   stop() {
     unpatch("vz-clock");
-    forceUpdateElement(
-      `.${getModulesByKeyword("homeIcon", false)[0].tutorialContainer}`
-    );
   }
 };
