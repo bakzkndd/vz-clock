@@ -16,7 +16,7 @@ module.exports = class vzclock extends Plugin {
       render: Settings,
     });
 
-    const homeButton = await getModule(["DefaultHomeButton"]);
+    const homeButton = await getModulesByKeyword(["HomeIcon"])[0];
     patch("vz-clock", homeButton, "DefaultHomeButton", (_, res) => {
       if (!Array.isArray(res)) res = [res];
       res.unshift(
@@ -34,7 +34,7 @@ module.exports = class vzclock extends Plugin {
     unpatch("vz-clock");
     vizality.api.settings.unregisterSettings("vz-clock-settings");
     forceUpdateElement(
-      `.${getModule(["homeIcon", "downloadProgress"], false).tutorialContainer}`
+      `.${getModulesByKeyword("homeIcon", false)[0].tutorialContainer}`
     );
   }
 };
