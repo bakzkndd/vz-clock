@@ -1,5 +1,5 @@
 const { Plugin } = require("@vizality/entities");
-const { React, getModulesByKeyword } = require("@vizality/webpack");
+const { React, getModule } = require("@vizality/webpack");
 const { patch, unpatch } = require("@vizality/patcher");
 const { forceUpdateElement } = require("@vizality/util");
 
@@ -10,8 +10,9 @@ module.exports = class vzclock extends Plugin {
   async start() {
     this.injectStyles("./style.css");
 
-    const homeButton = await getModulesByKeyword("HomeIcon")[0];
+    const homeButton = await getModule(m => m.default?.displayName?.includes("GuildList"));
     patch("vz-clock", homeButton, "DefaultHomeButton", (_, res) => {
+      console.log(res)
       if (!Array.isArray(res)) res = [res];
       res.unshift(
         React.createElement(Clock, {
