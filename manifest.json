@@ -1,6 +1,6 @@
 {
 	"name": "vz-clock",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "Display the current time at the top of the servers list",
 	"author": "bakzkndd#2819",
 	"license": "MIT"

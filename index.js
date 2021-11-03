@@ -19,7 +19,7 @@ module.exports = class vzclock extends Plugin {
     //   getDefaultMethodByKeyword(m, "showDMsOnly")
     // );
     const homeButton = await getModule(["HomeButton"])
-    patch("vz-clock", homeButton, "homeButton", (_, res) => {
+    patch("vz-clock", homeButton, "HomeButton", (_, res) => {
       if (!Array.isArray(res)) res = [res];
       res.unshift(
         React.createElement(Clock, {
