@@ -2,6 +2,9 @@
 	"name": "vz-clock",
 	"version": "1.0.1",
 	"description": "Display the current time at the top of the servers list",
-	"author": "bakzkndd#2819",
+	"author": {
+    "name": "bakzkndd#2819",
+    "id": "343103632453009408"
+  },
 	"license": "MIT"
 }
